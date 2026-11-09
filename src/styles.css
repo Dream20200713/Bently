@@ -1,0 +1,242 @@
+:root {
+  color-scheme: light;
+  --ink: #2f2a24;
+  --paper: #fffaf2;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: linear-gradient(180deg, #7fc3e6 0%, #cfe9ec 58%, #f6dcc0 100%);
+  font-family:
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC",
+    system-ui, -apple-system, sans-serif;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+#app {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+}
+
+#scene {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  cursor: grab;
+}
+
+#scene:active {
+  cursor: grabbing;
+}
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse at 50% 42%,
+      transparent 50%,
+      rgba(44, 63, 60, 0.18) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 246, 231, 0.16) 0%,
+      transparent 26%,
+      transparent 78%,
+      rgba(37, 51, 44, 0.16) 100%
+    );
+}
+
+.title {
+  position: absolute;
+  top: clamp(22px, 4.5vh, 46px);
+  left: clamp(22px, 4.5vw, 58px);
+  margin: 0;
+  pointer-events: none;
+  color: var(--paper);
+  text-shadow: 0 2px 20px rgba(36, 57, 48, 0.35);
+}
+
+.title__eyebrow {
+  margin: 0 0 10px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.34em;
+  opacity: 0.78;
+}
+
+.title__name {
+  margin: 0;
+  font-family: "Songti SC", "Noto Serif SC", "STSong", serif;
+  font-size: clamp(34px, 5.2vw, 64px);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.08em;
+}
+
+.title__latin {
+  margin: 10px 0 0;
+  font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  font-style: italic;
+  font-size: clamp(13px, 1.4vw, 17px);
+  letter-spacing: 0.14em;
+  opacity: 0.82;
+}
+
+.hint {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(18px, 3.4vh, 34px);
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  padding: 9px 18px;
+  border-radius: 999px;
+  color: rgba(255, 251, 242, 0.92);
+  background: rgba(38, 52, 47, 0.24);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  font-size: 11.5px;
+  letter-spacing: 0.16em;
+  pointer-events: none;
+  white-space: nowrap;
+  transition: opacity 1.2s ease;
+}
+
+.hint i {
+  width: 1px;
+  height: 11px;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.loader {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 22px;
+  background:
+    radial-gradient(ellipse at 50% 40%, #cbe9ef 0%, #a9d4e4 55%, #efd7c2 100%);
+  color: #586a60;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  transition:
+    opacity 0.9s ease,
+    visibility 0.9s ease;
+  z-index: 5;
+}
+
+.loader.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader p {
+  margin: 0;
+}
+
+.loader__paw {
+  position: relative;
+  width: 68px;
+  height: 54px;
+  animation: paw-breathe 1.8s ease-in-out infinite;
+}
+
+.loader__paw span,
+.loader__paw b {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  background: #f0a35c;
+  box-shadow: inset 0 -4px 0 rgba(151, 82, 31, 0.18);
+}
+
+.loader__paw span {
+  width: 16px;
+  height: 19px;
+  bottom: 12px;
+}
+
+.loader__paw span:nth-child(1) {
+  left: 4px;
+  transform: rotate(-18deg);
+}
+
+.loader__paw span:nth-child(2) {
+  left: 19px;
+  bottom: 16px;
+}
+
+.loader__paw span:nth-child(3) {
+  left: 34px;
+  bottom: 16px;
+}
+
+.loader__paw span:nth-child(4) {
+  left: 49px;
+  transform: rotate(18deg);
+}
+
+.loader__paw b {
+  width: 40px;
+  height: 30px;
+  left: 14px;
+  bottom: 0;
+}
+
+@keyframes paw-breathe {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-5px) scale(1.04);
+  }
+}
+
+.fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  padding: 32px;
+  text-align: center;
+  font-size: 15px;
+  color: #4a5a50;
+  background: #e8f1ef;
+  z-index: 6;
+}
+
+@media (max-width: 640px) {
+  .title__eyebrow {
+    letter-spacing: 0.24em;
+  }
+
+  .hint {
+    gap: 8px;
+    padding: 8px 14px;
+    font-size: 10.5px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loader__paw {
+    animation: none;
+  }
+}
