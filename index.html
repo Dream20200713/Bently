@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#8fc7e8" />
+    <meta
+      name="description"
+      content="小猫钓鱼 —— 一个用 Three.js 制作的三维实时动画：橘猫坐在池塘边垂钓，小鱼跃出水面。"
+    />
+    <title>小猫钓鱼 · Kitten Fishing</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%90%BE%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="./src/styles.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "./vendor/three.module.min.js"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <main id="app">
+      <canvas id="scene" aria-label="三维小猫钓鱼动画"></canvas>
+
+      <div class="vignette" aria-hidden="true"></div>
+
+      <header class="title">
+        <p class="title__eyebrow">3D · REAL-TIME ANIMATION</p>
+        <h1 class="title__name">小猫钓鱼</h1>
+        <p class="title__latin">Kitten Fishing</p>
+      </header>
+
+      <p class="hint" aria-hidden="true">
+        <span>拖动旋转视角</span>
+        <i></i>
+        <span>滚轮 / 双指缩放</span>
+      </p>
+
+      <div class="loader" id="loader" role="status">
+        <div class="loader__paw">
+          <span></span><span></span><span></span><span></span><b></b>
+        </div>
+        <p>小猫正在准备鱼竿…</p>
+      </div>
+
+      <noscript>
+        <div class="fallback">这个三维动画需要启用 JavaScript 才能观看。</div>
+      </noscript>
+    </main>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
